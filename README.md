@@ -5,7 +5,6 @@ This project is a restaurant listing and searching application built using the M
 ## Table of Contents
 
 - [Features](#features)
-- [Demo](#demo)
 - [Setup](#setup)
 - [Usage](#usage)
 - [File Structure](#file-structure)
@@ -46,16 +45,13 @@ This project is a restaurant listing and searching application built using the M
 - **Search Functionality:**
   - Search for restaurants by name and description.
 
-## Demo
-
-[Link to Demo]()
 
 ## Setup
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/gauravbhaskar080/Chat-App.git
+   git clone https://github.com/e42-typeface-ai/iiits-gauravbhaskar080.git
    ```
 
 2. **Install dependencies:**
@@ -65,9 +61,9 @@ This project is a restaurant listing and searching application built using the M
    ```bash
    cd Chat-App
 
-   cd frontend
+   cd client
    npm install
-   cd backend
+   cd server
    npm install
    ```
 
@@ -76,19 +72,17 @@ This project is a restaurant listing and searching application built using the M
    - Create a `.env` file in the root directory and add your MongoDB URL:
 
      ```
-     MONGO_URI = 'your_mongo_db_url'
-     JWT_SECRET = 'your_jwt_secret'
-     PORT = 5000
+     MONGODB_URI = 'your_mongo_db_url'
      ```
 
 ## Usage
 
 1. **Start the server:**
 
-   In a new terminal window, navigate to the `backend` directory and run:
+   In a new terminal window, navigate to the `server` directory and run:
 
    ```bash
-   cd backend
+   cd server
    npm start
    ```
 
@@ -96,10 +90,10 @@ This project is a restaurant listing and searching application built using the M
 
 2. **Start the client:**
 
-   In a new terminal window, navigate to the `frontend` directory and run:
+   In a new terminal window, navigate to the `client` directory and run:
 
    ```bash
-   cd frontend
+   cd client
    npm start
    ```
 
@@ -111,26 +105,23 @@ This project is a restaurant listing and searching application built using the M
 
 ## File Structure
 
-- `frontend/`: Contains the React frontend.
+- `client/`: Contains the React frontend.
   - `public/`: Holds static files like CSS, images, and JavaScript.
   - `src/`: Contains the main source code.
+    - `api/` : All api to fetch data from backend
     - `components/`: React components used in the application.
-    - `animations/`: Animations used for UI elements.
-    - `config/`: Configuration files.
-    - `context/`: React context providers.
-    - `Pages/`: Different pages of the application.
+    - `pages/`: Different pages of the application.
+    - `styles/`: Different page styles of the application.
     - `App.js`: The main application component.
     - `index.js`: Entry point of the React application.
-    - `theme.js`: Contains theme-related styling.
-- `backend/`: Contains the Node.js backend.
+- `server/`: Contains the Node.js backend.
   - `config/`: Configuration files.
   - `controllers/`: Controllers for handling routes and data.
-  - `data/`: Sample data for initial setup.
-  - `middleware/`: Custom middleware functions.
+  - `Data/`: Sample data for initial setup.
   - `models/`: Mongoose models for MongoDB.
-  - `public/`: Static files.
   - `routes/`: Express.js route handlers.
-  - `server.js`: Entry point of the Node.js application.
+  - `scripts/`: For Loading csv and Excel file data in mongodb.
+  - `index.js`: Entry point of the Node.js application.
   - `.env`: Configuration file for environment variables.
 
 ## Contributing
