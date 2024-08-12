@@ -1,0 +1,134 @@
+.restaurant-detail-container {
+  width: 100vw;
+  padding: 20px;
+  margin-left: 5%;
+  background: rgb(241, 241, 241);
+}
+
+.restaurant-content {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-image {
+  width: 86%;
+  margin-left: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-image img {
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.restaurant-name {
+  width: 90%;
+  padding: 20px;
+}
+
+.restaurant-name h1 {
+  margin: 0;
+  color: #d2691e; 
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  font-family: "Georgia", serif; 
+  text-align: center; 
+  padding: 10px 0; 
+  text-transform: uppercase;
+}
+
+.restaurant-card {
+  width: 86%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 3.5%;
+}
+
+.restaurant-card p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.restaurant-card p strong {
+  color: #d2691e;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card-section p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #333;
+}
+
+.card-section p strong {
+  color: #d2691e;
+}
+
+.map-container {
+  margin-top: 20px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+.loader {
+  width: 50px; 
+  height: 50px;
+}
+
+.detail-item {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+  width: 48%;
+  padding: 15px;
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.detail-item label {
+  flex: 0 0 50%;
+  font-weight: bold;
+  color: #d2691e;
+}
+
+.detail-item .value {
+  flex: 1;
+}
+
+.detail-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.detail-item strong {
+  color: #d2691e;
+}

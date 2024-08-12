@@ -1,0 +1,39 @@
+:root {
+  --primary: #f49001;
+  --secondary: #ffd9a3;
+  --danger: rgb(241, 70, 70);
+  --success: rgb(32, 233, 32);
+  --text-gary: rgb(136, 135, 135);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.text-text-gary {
+  color: var(--text-gary);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.transition-shadow {
+  transition: box-shadow 0.3s ease;
+}
