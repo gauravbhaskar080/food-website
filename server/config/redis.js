@@ -5,8 +5,8 @@ require("dotenv").config();
 const client = redis.createClient({
     password: process.env.REDIS_PASSWORD,
     socket: {
-        host: REDIS_HOST,
-        port: REDIS_PORT
+        host: process.env.REDIS_HOST,
+        port: process.env.REDIS_PORT
     }
 });
 
