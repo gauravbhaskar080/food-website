@@ -25,6 +25,7 @@ const RestaurantDetail = () => {
       </div>
     );
 
+  const googleMapsEmbedUrl = `${process.env.REACT_APP_GOOGLE_MAPS_EMBED_URL}?q=${restaurant.Latitude},${restaurant.Longitude}&z=15&output=embed`;
   return (
     <>
       <SideBar />
@@ -154,7 +155,7 @@ const RestaurantDetail = () => {
           <div className="map-container">
             <iframe
               title="Restaurant Location"
-              src={`https://maps.google.com/maps?q=${restaurant.Latitude},${restaurant.Longitude}&z=15&output=embed`}
+              src={googleMapsEmbedUrl}
               style={{
                 border: 0,
                 width: "100%",

@@ -15,7 +15,8 @@ const LocationSearch = () => {
       const data = await fetchRestaurantsByLocation(latitude, longitude);
       setResults(data);
 
-      const newMapUrl = `https://maps.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`;
+      const baseUrl = process.env.REACT_APP_GOOGLE_MAPS_EMBED_URL;
+      const newMapUrl = `${baseUrl}?q=${latitude},${longitude}&z=15&output=embed`;
       setMapUrl(newMapUrl);
     }
   };

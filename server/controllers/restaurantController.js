@@ -1,6 +1,7 @@
 const Restaurant = require("../models/Restaurant");
 const CountryCode = require("../models/CountryCode");
 const geolib = require("geolib");
+const client = require("../config/redis");
 
 
 //For Filters
@@ -42,9 +43,16 @@ exports.getRestaurants = async (req, res) => {
   const { page = 1, limit = 10000 } = req.query;
   try {
     const query = await constructSearchQuery(req.query);
+    const cacheKey = `restaurants:${JSON.stringify(query)}:page=${page}:limit=${limit}`;
+    const cachedData = await client.get(cacheKey);
+    if (cachedData) {
+      return res.json(JSON.parse(cachedData));
+    }
     const restaurants = await Restaurant.find(query)
       .skip((page - 1) * limit)
       .limit(Number(limit));
+    
+    await client.setEx(cacheKey, 3600, JSON.stringify(restaurants));
     res.json(restaurants);
   } catch (err) {
     console.error(err);
