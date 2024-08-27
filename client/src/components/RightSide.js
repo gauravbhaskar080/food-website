@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "../styles/leftside.css";
+import "../styles/rightside.css";
 import delivery from "../assests/delivery.png";
-const LeftSide = ({ data, show }) => {
+const RightSide = ({ data, show }) => {
   return (
-    <div className="leftside" > 
+    <div className="rightside" > 
       <div className="sidebar-msg" >
         <div className="img">
           <img src={delivery} alt="" />
@@ -18,4 +18,4 @@ const LeftSide = ({ data, show }) => {
   );
 };
 
-export default LeftSide;
+export default RightSide;

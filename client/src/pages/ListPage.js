@@ -1,11 +1,10 @@
 import React from 'react';
-import RestaurantList from '../components/RestaurantList';
 import MainArea from '../components/MainArea';
-import LeftSide from '../components/LeftSide';
 
 const ListPage = () => {
   return (
     <div >
+       {/*1st page -  Home page */}
       <MainArea/>
     </div>
   );

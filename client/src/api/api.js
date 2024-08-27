@@ -1,5 +1,6 @@
 // const API_URL = 'http://localhost:5000';
-const API_URL = `https://zomato-uikv.onrender.com`;
+// const API_URL = `https://zomato-uikv.onrender.com`;
+const API_URL = `https://food-website-rn1y.onrender.com`;
 
 // Fetching Restaurants data from the backend
 export const fetchRestaurants = async () => {

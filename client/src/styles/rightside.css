@@ -1,5 +1,5 @@
 @import "./vars.css";
-.leftside {
+.rightside {
   width: 30%;
   height: 100%;
   background: #fff;
@@ -10,10 +10,9 @@
   padding: 0px 20px;
   position: fixed;
   top: 0;
-  right: 0;
-  
+  right: 0;  
 }
-.leftside .header {
+.rightside .header {
   width: 100%;
   height: 80px;
   display: flex;
@@ -119,7 +118,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin: 6rem 0;
   padding: 20px;
   padding-left: 0;
 }
@@ -148,7 +147,7 @@
 }
 
 @media (max-width: 1104px) {
-  .leftside {
+  .rightside {
     width: 0px;
     display: none;
   }

@@ -3,17 +3,20 @@ import { fetchRestaurantsByLocation } from "../api/api";
 import { Link } from "react-router-dom";
 import SideBar from "./SideBar";
 import ProductCard from "./ProductCard";
+import food from "../assests/food.png"
 
 const LocationSearch = () => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [results, setResults] = useState([]);
   const [mapUrl, setMapUrl] = useState("");
+  const [noResults, setNoResults] = useState(true);
 
   const handleSearch = async () => {
     if (latitude && longitude) {
       const data = await fetchRestaurantsByLocation(latitude, longitude);
       setResults(data);
+      setNoResults(data.length === 0);
 
       const baseUrl = process.env.REACT_APP_GOOGLE_MAPS_EMBED_URL;
       const newMapUrl = `${baseUrl}?q=${latitude},${longitude}&z=15&output=embed`;
@@ -84,13 +87,26 @@ const LocationSearch = () => {
             width: "50%",
           }}
         >
-          {results.map((restaurant) => (
-            <div key={restaurant._id}>
-              <Link to={`/restaurants/${restaurant._id}`}>
-                <ProductCard restaurant={restaurant} />
-              </Link>
-            </div>
-          ))}
+          {noResults ? (
+            <img
+              src={food} 
+              alt="No Results"
+              style={{
+                width: "600px",
+                height: "auto",
+                display: "block",
+                margin: "12vh 100%",
+              }}
+            />
+          ) : (
+            results.map((restaurant) => (
+              <div key={restaurant._id}>
+                <Link to={`/restaurants/${restaurant._id}`}>
+                  <ProductCard restaurant={restaurant} />
+                </Link>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
@@ -111,7 +127,7 @@ const LocationSearch = () => {
             style={{
               border: "none",
               width: "100%",
-              height: "100%",
+              height: "90%",
               borderRadius: "10px",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             }}

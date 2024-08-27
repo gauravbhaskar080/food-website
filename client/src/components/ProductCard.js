@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/mainarea.css"; 
+// import "../styles/mainarea.css"; 
 const convertColorNameToCSS = (colorName) => {
   if (!colorName) return "#90ee90"; 
 

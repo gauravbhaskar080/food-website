@@ -11,10 +11,11 @@ const SearchPage = () => {
         textTransform: "uppercase",
         background: "rgb(241, 241, 241)",
         width:"100vw",
-        height: "100vh",
+        height: "100%",
       }}
     >
       <h1 style={{ margin: "1%" }}>Search by Location</h1>
+      {/* 3rd Page */}
       <LocationSearch />
     </div>
   );

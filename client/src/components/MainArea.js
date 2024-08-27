@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+
 import "../styles/mainarea.css";
-import Header from "./Header";
+
 import pizzaboy from "../assests/pizzaboy.png";
 import pizzaSilce from "../assests/pizzaSilce.png";
-import LeftSide from "./LeftSide";
-import SideBar from "./SideBar";
-import { fetchRestaurants } from "../api/api";
-import RestaurantList from "./RestaurantList";
 
-import "../styles/index.css";
+import Header from "./Header";
+import SideBar from "./SideBar";
+import RestaurantList from "./RestaurantList";  
+import RightSide from "./RightSide";
+
+import { fetchRestaurants } from "../api/api";
 
 const MainArea = () => {
   const [category, setCategory] = useState("pizza");
@@ -23,22 +25,29 @@ const MainArea = () => {
     loadRestaurants();
   }, []);
 
+  const scrollToList = () => {
+    const listElement = document.getElementById("list");
+    if (listElement) {
+      listElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <SideBar />
       <div style={{ display: "flex", marginLeft: "10px", width: "100vw" }}>
         <div className="mainarea">
-          <Header />
+          {/* <Header /> */}
           <div className="banner">
             <div className="img">
               <img src={pizzaboy} alt="" />
             </div>
             <div className="text">
-              <h2>Hello </h2>
+              <h2>Hello Foodie</h2>
               <p>
                 Get Free delivery on <span>500 Rs.</span> and above
               </p>
-              <button>Order Now!</button>
+              <button onClick={scrollToList}>Order Now!</button>
               <img
                 className="full circle"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Orange_circle_100%25.svg/768px-Orange_circle_100%25.svg.png"
@@ -136,12 +145,12 @@ const MainArea = () => {
               </div>
             </div>
           </div>
-          <div style={{ marginTop: "4%" }}>
+          <div style={{ marginTop: "4%" }} id="list">
             <RestaurantList />
           </div>
         </div>
 
-        <LeftSide />
+        <RightSide />
       </div>
     </>
   );

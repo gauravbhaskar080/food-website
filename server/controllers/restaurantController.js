@@ -2,7 +2,7 @@ const Restaurant = require("../models/Restaurant");
 const CountryCode = require("../models/CountryCode");
 const geolib = require("geolib");
 const client = require("../config/redis");
-
+const genAi = require("../gemini/playground");
 
 //For Filters
 const constructSearchQuery = async (queryParams) => {
@@ -43,7 +43,9 @@ exports.getRestaurants = async (req, res) => {
   const { page = 1, limit = 10000 } = req.query;
   try {
     const query = await constructSearchQuery(req.query);
-    const cacheKey = `restaurants:${JSON.stringify(query)}:page=${page}:limit=${limit}`;
+    const cacheKey = `restaurants:${JSON.stringify(
+      query
+    )}:page=${page}:limit=${limit}`;
     const cachedData = await client.get(cacheKey);
     if (cachedData) {
       return res.json(JSON.parse(cachedData));
@@ -51,7 +53,7 @@ exports.getRestaurants = async (req, res) => {
     const restaurants = await Restaurant.find(query)
       .skip((page - 1) * limit)
       .limit(Number(limit));
-    
+
     await client.setEx(cacheKey, 3600, JSON.stringify(restaurants));
     res.json(restaurants);
   } catch (err) {
@@ -86,7 +88,6 @@ exports.getRestaurantByRestaurantId = async (req, res) => {
   }
 };
 
-
 //Get Restaurants List (in 10km radius) by Location -> Latitude and Longitude
 exports.getRestaurantsByLocation = async (req, res) => {
   const { latitude, longitude } = req.query;
@@ -114,7 +115,7 @@ exports.getRestaurantsByLocation = async (req, res) => {
       geolib.isPointWithinRadius(
         { latitude: restaurant.Latitude, longitude: restaurant.Longitude },
         { latitude: lat, longitude: lon },
-        3000
+        10000
       )
     );
 
@@ -139,3 +140,68 @@ exports.getRestaurantByName = async (req, res) => {
     res.status(500).json({ msg: "Server error" });
   }
 };
+
+// exports.getRestaurantByRating = async (req, res) => {
+//   try {
+//     const { rating } = req.params;
+//     const restaurants = await Restaurant.find({ AggregateRating: rating });
+
+//     if (!restaurants) {
+//       return res.status(404).json({ msg: "Restaurant not found" });
+//     }
+
+//     res.status(200).json(restaurants);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ msg: "Server error" });
+//   }
+// };
+
+// exports.getRestaurantByRatingText = async (req, res) => {
+//   try {
+//     const { ratingText } = req.params;
+//     const restaurants = await Restaurant.find({ RatingText: ratingText });
+//     if (!restaurants) {
+//       return res.status(404).json({ msg: "Restaurant not found" });
+//     }
+//     res.status(200).json(restaurants);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ msg: "Server error" });
+//   }
+// };
+
+// exports.getRestaurantByCurrency = async (req, res) => {
+//   try {
+//     const { currency } = req.params;
+//     const restaurants = await Restaurant.find({
+//       Currency: { $regex: currency, $options: "i" },
+//     });
+//     if (!restaurants) {
+//       return res.status(404).json({ msg: "Restaurant not found" });
+//     }
+//     res.status(200).json(restaurants);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ msg: "Server error" });
+//   }
+// };
+
+// exports.getRestaurantByVotes = async (req, res) => {
+//   try {
+//     const { minVotes, maxVotes } = req.query;
+//     const min = parseInt(minVotes, 10);
+//     const max = parseInt(maxVotes, 10);
+//     const restaurants = await Restaurant.find({
+//       Votes: { $gte: min, $lte: max },
+//     });
+//     if (!restaurants || restaurants.length === 0) {
+//       return res.status(404).json({ msg: "No restaurants found in the specified vote range." });
+//     }
+//     res.json(restaurants);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ msg: "Server error" });
+//   }
+// };
+

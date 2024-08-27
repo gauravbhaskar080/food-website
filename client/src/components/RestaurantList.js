@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   fetchRestaurants,
   fetchRestaurantByRestaurantId,
@@ -8,7 +9,7 @@ import {
   fetchRestaurantsByCost
 } from "../api/api";
 import ProductCard from "./ProductCard";
-import { Link } from "react-router-dom";
+
 
 const cuisinesList = [
   "French",
@@ -70,7 +71,6 @@ const RestaurantList = () => {
           setRestaurants(data);
           setTotalPages(Math.ceil(data.length / pageSize));
         } else {
-          // Handle unexpected data format
           console.error('Unexpected data format:', data);
         }
       } catch (error) {
@@ -95,6 +95,7 @@ const RestaurantList = () => {
       loadFilteredRestaurants();
     }
   }, [selectedCuisine]);
+  
   useEffect(() => {
     const loadFilteredRestaurants = async () => {
       const data = await fetchRestaurantsByCountry(selectedCountry);
